@@ -24,12 +24,11 @@ class App extends React.Component {
         let url = "http://api.openweathermap.org/geo/1.0/direct";
 
         axios.get(`${url}?q=${city}&appid=${apiKey}`)
-          .then(response => {console.log(response.data);
+          .then(response => {
             if (!response.ok && response.status !== 200) {
                 throw new Error(`Error: ${response.status} - ${response.statusText}`)
             }
             let data = response.data;
-            console.log('Data:', data);
             this.setState({ 
                 lat: data[0].lat, 
                 lon: data[0].lon
@@ -48,14 +47,11 @@ class App extends React.Component {
       // API call: api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
 
       axios.get(`${url}?lat=${this.state.lat}&lon=${this.state.lon}&appid=${apiKey}`)
-        .then(response => {console.log('Weather response:', response);
-
+        .then(response => {
           if (!response.ok && response.status !== 200) {
             throw new Error(`Error: ${response.status} - ${response.statusText}`)
           }
-
           let data = response.data;
-          console.log('Data:', data);
           this.setState({
             main: data.list[0].weather[0].main
           })
@@ -65,7 +61,6 @@ class App extends React.Component {
         })
     }
 
-    
     render() {
         return (
             <div className="App">
