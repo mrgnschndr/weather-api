@@ -17,8 +17,7 @@ class App extends React.Component {
         
     }
 
-
-    // fetch 
+    // refactored fetch to axios
     getCoordinatesWithFetch = () => {
         let apiKey = process.env.REACT_APP_WEATHER_API_KEY;
         let city = "Canton";
@@ -43,29 +42,27 @@ class App extends React.Component {
           })
     }
 
-    getWeatherWithFetch = async () => {
+    getWeatherWithFetch = () => {
       let apiKey = process.env.REACT_APP_WEATHER_API_KEY;
       let url = "http://api.openweathermap.org/data/2.5/forecast";
       // API call: api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
 
-      try {
-          let res = await fetch(`${url}?lat=${this.state.lat}&lon=${this.state.lon}&appid=${apiKey}`);
-          console.log('Weather res:', res);
+      axios.get(`${url}?lat=${this.state.lat}&lon=${this.state.lon}&appid=${apiKey}`)
+        .then(response => {console.log('Weather response:', response);
 
-          if (!res.ok) {
-            throw new Error(`Error: ${res.status} - ${res.statusText}`)
+          if (!response.ok && response.status !== 200) {
+            throw new Error(`Error: ${response.status} - ${response.statusText}`)
           }
 
-          let data = await res.json();
-          console.log(data);
+          let data = response.data;
+          console.log('Data:', data);
           this.setState({
             main: data.list[0].weather[0].main
-          }
-        )
-      } catch (error) {
-        console.log(error.message);
-      }
-
+          })
+        })
+        .catch (error => {
+          console.log(error.message);
+        })
     }
 
     
