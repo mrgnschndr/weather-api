@@ -1,0 +1,30 @@
+[
+    {   "title": "Ace",
+        "imgURL": "ace-lifejacket.jpg",
+        "count": 0
+    },
+    {   "title": "Max",
+        "imgURL": "max-3.jpeg",
+        "count": 0
+    },
+    {   "title": "Foxy",
+        "imgURL": "foxy-5.jpeg",
+        "count": 0
+    },
+    {   "title": "Burbon",
+        "imgURL": "burbon.jpeg",
+        "count": 0
+    },
+    {   "title": "Otis",
+        "imgURL": "dog-otis.png",
+        "count": 0
+    },
+    {   "title": "Kevin",
+        "imgURL": "kevin.jpeg",
+        "count": 0
+    },
+    {   "title": "Fawna",
+        "imgURL": "deer.jpeg",
+        "count": 0
+    }
+]

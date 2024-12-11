@@ -1,76 +1,52 @@
-import "./App.css";
-import React from "react";
-import axios from 'axios';
+import React, {useState} from "react";
+import Post from './post.js';
+import posts from './counterpost.json';
 
-class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            lat: null,
-            lon: null,
-            main: null
-        }
+
+function App() {
+    // use state returns an array of two indexes = variable of state // function used to update state
+    const [count, setCount] = useState(0);
+
+    function incrementCount() {
+        setCount((prevCount) => prevCount + 1)
     }
+    function decrementCount() {
+        setCount((prevCount) => prevCount - 1)
+    }
+
+    // a grid of photos
+    // use the counter and every photo has a counter
+    // most popular photo
+    // most voted pet is displayed first
+    // 1 components need to updated based off of the other -- 2 components working off one state.
     
-    componentDidMount() {
-        this.getCoordinatesWithFetch();
-        
-    }
+    // simple
+    // picture in middle at top of page -- featured photo of the week thats one component
+    // below that is a repeating grid {the picture, the title of the picture, and the increment counter with the current count.}
 
-    // refactored fetch to axios
-    getCoordinatesWithFetch = () => {
-        let apiKey = process.env.REACT_APP_WEATHER_API_KEY;
-        let city = "Canton";
-        let url = "http://api.openweathermap.org/geo/1.0/direct";
+    return (
+        <div>
+            <button onClick={decrementCount}>-</button>
+            <p>{count}</p>
+            <button onClick={incrementCount}>+</button>
+            {posts.map((post, index) => (
+                <Post 
+                key = {index}
+                title = {post.title}
+                imgURL = {post.imgURL}
+                count = {post.count}
+                />
+            ))}
+        </div>
+    )
+};
 
-        axios.get(`${url}?q=${city}&appid=${apiKey}`)
-          .then(response => {
-            if (!response.ok && response.status !== 200) {
-                throw new Error(`Error: ${response.status} - ${response.statusText}`)
-            }
-            let data = response.data;
-            this.setState({ 
-                lat: data[0].lat, 
-                lon: data[0].lon
-            })
-          })
-          .catch (error => {
-            console.log('Error message:', error.message)
-          })
-          .finally(() => {this.getWeatherWithFetch()
-          })
-    }
+export default App;
 
-    getWeatherWithFetch = () => {
-      let apiKey = process.env.REACT_APP_WEATHER_API_KEY;
-      let url = "http://api.openweathermap.org/data/2.5/forecast";
-      // API call: api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
 
-      axios.get(`${url}?lat=${this.state.lat}&lon=${this.state.lon}&appid=${apiKey}`)
-        .then(response => {
-          if (!response.ok && response.status !== 200) {
-            throw new Error(`Error: ${response.status} - ${response.statusText}`)
-          }
-          let data = response.data;
-          this.setState({
-            main: data.list[0].weather[0].main
-          })
-        })
-        .catch (error => {
-          console.log(error.message);
-        })
-    }
-
-    render() {
-        return (
-            <div className="App">
-                <h1>App</h1>
-                <p>{`API KEY: ${process.env.REACT_APP_WEATHER_API_KEY}`}</p>
-                <p>{`Lat: ${this.state.lat}, Lon: ${this.state.lon}`}</p>
-                <p>{`Weather Now: ${this.state.main}`}</p>
-            </div>
-        )
-    }
-}
-
-export default App
+// finish MVP by Thursday
+// clean up to look like they're in a grid
+// highlight at top pet PROMOTED the most and pet DEMOTED the most (inc in pos vs. dec in pos)
+// how to handle negative numbers?
+// how to handle ties?
+// how to handle no winners/losers?
