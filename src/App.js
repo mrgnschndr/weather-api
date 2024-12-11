@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import Post from './post.js';
 import posts from './counterpost.json';
+import './App.css';
 
 
 function App() {
@@ -29,14 +30,16 @@ function App() {
             <button onClick={decrementCount}>-</button>
             <p>{count}</p>
             <button onClick={incrementCount}>+</button>
-            {posts.map((post, index) => (
-                <Post 
-                key = {index}
-                title = {post.title}
-                imgURL = {post.imgURL}
-                count = {post.count}
-                />
-            ))}
+            <div className="post-grid">
+                {posts.map((post, index) => (
+                    <Post className="posts"
+                    key = {index}
+                    title = {post.title}
+                    imgURL = {post.imgURL}
+                    count = {post.count}
+                    />
+                ))}
+            </div>
         </div>
     )
 };
