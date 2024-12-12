@@ -1,22 +1,29 @@
-div {
-  text-align: center;
+img {
+	object-fit: cover;
+	object-position: center center;
+	width: 100%;
+	height: 500px;
 }
 
-.App {
-  text-align: center;
+.post-grid {
+	display: grid;
+	grid-template-columns: auto auto auto;
+	gap: 50px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.post-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: 10px
 }
 
-.App-link {
-  color: #61dafb;
+.button-wrapper {
+	display: flex;
+	justify-content: center;
+	margin: 10px;
+}
+
+.button-wrapper p {
+	margin: 10px;
 }

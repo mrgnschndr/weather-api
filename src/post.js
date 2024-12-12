@@ -15,12 +15,14 @@ function Post({ title, imgURL }) {
     }
 
     return (
-        <div>
+        <div className="post-container">
             <p>{titled}</p>
             <img alt='test' src={`/images/${imageURL}`} />
-            <button onClick={decrementCount}>-</button>
-            <p>{count}</p>
-            <button onClick={incrementCount}>+</button>
+            <div className="button-wrapper">
+                <button onClick={decrementCount}>-</button>
+                <p>{count}</p>
+                <button onClick={incrementCount}>+</button>
+            </div>
         </div>
     )
 }
