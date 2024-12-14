@@ -3,15 +3,15 @@ import React, { useState } from 'react';
 function Post({ title, imgURL }) {
     let titled = title;
     let imageURL = imgURL;
-    console.log(imageURL);
-
     const [count, setCount] = useState(0);
 
     function incrementCount() {
         setCount((prevCount) => prevCount + 1)
+        console.log(count)
     }
     function decrementCount() {
         setCount((prevCount) => prevCount - 1)
+        console.log(count)
     }
 
     return (

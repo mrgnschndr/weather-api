@@ -6,15 +6,6 @@ import './App.css';
 
 function App() {
     // use state returns an array of two indexes = variable of state // function used to update state
-    const [count, setCount] = useState(0);
-
-    function incrementCount() {
-        setCount((prevCount) => prevCount + 1)
-    }
-    function decrementCount() {
-        setCount((prevCount) => prevCount - 1)
-    }
-
     // a grid of photos
     // use the counter and every photo has a counter
     // most popular photo
@@ -27,9 +18,6 @@ function App() {
 
     return (
         <div>
-            <button onClick={decrementCount}>-</button>
-            <p>{count}</p>
-            <button onClick={incrementCount}>+</button>
             <div className="post-grid">
                 {posts.map((post, index) => (
                     <Post className="posts"
