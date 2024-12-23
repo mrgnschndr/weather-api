@@ -4,7 +4,6 @@ import axios from 'axios';
 import DeveloperNotes from "./DeveloperNotes.js";
 
 
-<<<<<<< HEAD
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -75,35 +74,6 @@ class App extends React.Component {
             }
             console.log(res);
             return res;
-=======
-function App() {
-    // use state returns an array of two indexes = variable of state // function used to update state
-    // a grid of photos
-    // use the counter and every photo has a counter
-    // most popular photo
-    // most voted pet is displayed first
-    // 1 components need to updated based off of the other -- 2 components working off one state.
-    
-    // simple
-    // picture in middle at top of page -- featured photo of the week thats one component
-    // below that is a repeating grid {the picture, the title of the picture, and the increment counter with the current count.}
-
-    return (
-        <div>
-            <div className="post-grid">
-                {posts.map((post, index) => (
-                    <Post className="posts"
-                    key = {index}
-                    title = {post.title}
-                    imgURL = {post.imgURL}
-                    count = {post.count}
-                    />
-                ))}
-            </div>
-        </div>
-    )
-};
->>>>>>> bed91be6b0a08e6cb9697c71c7ebe2eecb1af27b
 
         } catch(error) {
             console.log(error.message);
