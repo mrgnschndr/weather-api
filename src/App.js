@@ -2,6 +2,7 @@ import "./App.css";
 import React from "react";
 import axios from 'axios';
 import DeveloperNotes from "./DeveloperNotes.js";
+import Product from "./Product.js";
 
 
 class App extends React.Component {
@@ -11,7 +12,8 @@ class App extends React.Component {
             lat: null,
             lon: null,
             main: null,
-            developerNotes: []
+            developerNotes: [],
+            product: null
         }
     }
 
@@ -80,6 +82,18 @@ class App extends React.Component {
         }
     }
 
+    getProduct = async () => {
+        try {
+            let res = await axios.get('http://localhost:5001/products');
+            this.setState({
+                product: res.data
+            })
+            return res.data
+        } catch(error) {
+            console.log(error.message);
+        }
+    }
+
     render() {
         return (
             <div className="App">
@@ -88,12 +102,14 @@ class App extends React.Component {
                 <p>{`Lat: ${this.state.lat}, Lon: ${this.state.lon}`}</p>
                 <p>{`Weather Now: ${this.state.main}`}</p>
                 <button onClick={this.getDocumentation}>Get Documentation</button>
+                <button onClick={this.getProduct}>Get Product</button>
                 <div>
-                    {this.state.developerNotes.map((note, index) => {
+                    {/* {this.state.developerNotes.map((note, index) => {
                         return(
                             <DeveloperNotes key={index} devNote={note} />
                         )
-                    })}
+                    })} */}
+                    {this.state.product && <Product product={this.state.product}/>}
                 </div>
             </div>
         )
