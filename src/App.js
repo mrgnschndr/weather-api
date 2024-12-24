@@ -13,7 +13,7 @@ class App extends React.Component {
             lon: null,
             main: null,
             developerNotes: [],
-            product: null
+            product: []
         }
     }
 
@@ -67,7 +67,7 @@ class App extends React.Component {
 
     getDocumentation = async () => {
         try {
-            let res = await axios.get('http://localhost:5001/documentation')
+            let res = await axios.get('http://localhost:5002/documentation')
             this.setState({
                 developerNotes: res.data
             })
@@ -84,11 +84,11 @@ class App extends React.Component {
 
     getProduct = async () => {
         try {
-            let res = await axios.get('http://localhost:5001/products');
+            let res = await axios.get('http://localhost:5002/products');
             this.setState({
                 product: res.data
             })
-            return res.data
+            return res;
         } catch(error) {
             console.log(error.message);
         }
@@ -109,7 +109,12 @@ class App extends React.Component {
                             <DeveloperNotes key={index} devNote={note} />
                         )
                     })} */}
-                    {this.state.product && <Product product={this.state.product}/>}
+                    {/* {this.state.product && <Product product={this.state.product}/>} */}
+                    {this.state.product.map((product, index) => {
+                        return(
+                            <Product key={index} prod={product} />
+                        )
+                    })}
                 </div>
             </div>
         )

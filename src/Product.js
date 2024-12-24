@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
-function Product({product:{name, description, price, companyName}}) {
+function Product(props) {
     return(
          <>
-            <h2>{name}</h2>
-            <p>{description}</p>
-            <p>{price}</p>
-            <p>{companyName}</p>
+            <h2>{props.prod.name}</h2>
+            <p>{props.prod.description}</p>
+            <p>{props.prod.price}</p>
+            <p>{props.prod.company}</p>
          </>
     )
 }
